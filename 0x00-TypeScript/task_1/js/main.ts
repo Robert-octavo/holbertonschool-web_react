@@ -1,11 +1,12 @@
 /*
-  Write a function printTeacher:
+Write a Class named StudentClass:
 
-  - It accepts two arguments firstName and lastName
-  - It returns the first letter of the firstName and the full lastName
-  - Example: printTeacher("John", "Doe") -> J. Doe
+  - The constructor accepts firstName(string) and lastName(string) arguments
+  - The class has a method named workOnHomework that return the string Currently working
+  - The class has a method named displayName. It returns the firstName of the student
+  - The constructor of the class should be described through an Interface
+  - The class should be described through an Interface
 
-Write an interface for the function named printTeacherFunction.
 */
 
 interface Teacher {
@@ -32,13 +33,31 @@ export const printTeacher: printTeacherFunction = (
   return `${firstName[0]}. ${lastName}`;
 };
 
-console.log(printTeacher('John', 'Doe'));
+interface StudentConstructor {
+  new (firstName: string, lastName: string): StudentClassInterface;
+}
 
-const director1: Directors = {
-  firstName: 'John',
-  lastName: 'Doe',
-  location: 'London',
-  fullTimeEmployee: true,
-  numberOfReports: 17,
-};
-console.log(director1);
+interface StudentClassInterface {
+  firstName: string;
+  lastName: string;
+  workOnHomework(): string;
+  displayName(): string;
+}
+
+export const StudentClass: StudentConstructor = class StudentClass implements StudentClassInterface {
+  firstName: string;
+  lastName: string;
+
+  constructor(firstName: string, lastName: string) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+  }
+
+  workOnHomework(): string {
+    return 'Currently working';
+  }
+
+  displayName(): string {
+    return this.firstName;
+  }
+}
