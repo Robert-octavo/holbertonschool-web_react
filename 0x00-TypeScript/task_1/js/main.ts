@@ -1,14 +1,6 @@
 /*
-Write an interface named Teacher that accepts the following elements:
-
-  - firstName: string - can only be set during initialization of an object of this interface
-  - lastName: string - can only be set during initialization of an object of this interface
-  - fullTimeEmployee: boolean
-  - yearsOfExperience: number - optional
-  - location: string
-  - Add the possibility to add any attribute to the Teacher object like contract(boolean) without specifying the name of the attribute:
-    - Property should be a string
-    - Type of this property can be anything
+  Write an interface named Directors that extends Teacher.
+  It requires an attribute named numberOfReports(number)
 
 */
 
@@ -21,12 +13,15 @@ interface Teacher {
   [propName: string]: any;
 }
 
-const teacher3: Teacher = {
-  firstName: "John",
-  lastName: "Doe",
-  fullTimeEmployee: false,
-  location: "London",
-  contract: true,
-};
+interface Directors extends Teacher {
+  numberOfReports: number;
+}
 
-console.log(teacher3);
+const director1: Directors = {
+  firstName: 'John',
+  lastName: 'Doe',
+  location: 'London',
+  fullTimeEmployee: true,
+  numberOfReports: 17,
+};
+console.log(director1);
