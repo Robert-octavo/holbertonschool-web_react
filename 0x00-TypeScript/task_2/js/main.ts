@@ -1,14 +1,9 @@
 /*
-Write a function isDirector:
+Write a String literal type named Subjects allowing a variable to have the value Math or History only. Write a function named teachClass:
 
-  - it accepts employee as an argument
-  - it will be used as a type predicate and if the employee is a director
-
-Write a function executeWork:
-
-  - it accepts employee as an argument
-  - if the employee is a Director, it will call workDirectorTasks
-  - if the employee is a Teacher, it will call workTeacherTasks
+  - it takes todayClass as an argument
+  - it will return the string Teaching Math if todayClass is Math
+  - it will return the string Teaching History if todayClass is History
 
 */
 
@@ -70,6 +65,17 @@ function executeWork(employee: Director | Teacher): string {
   }
 
   return employee.workTeacherTasks();
+}
+
+type Subjects = 'Math' | 'History';
+
+function teachClass(todayClass: Subjects): string {
+  if (todayClass === 'Math') {
+    return 'Teaching Math';
+  }
+  if (todayClass === 'History') {
+    return 'Teaching History';
+  }
 }
 
 export default createEmployee;
