@@ -1,34 +1,15 @@
 /*
-Create the DirectorInterface interface with the 3 expected methods:
+Write a function isDirector:
 
-  - workFromHome() returning a string
-  - getCoffeeBreak() returning a string
-  - workDirectorTasks() returning a string
+  - it accepts employee as an argument
+  - it will be used as a type predicate and if the employee is a director
 
-Create the TeacherInterface interface with the 3 expected methods:
+Write a function executeWork:
 
-  - workFromHome() returning a string
-  - getCoffeeBreak() returning a string
-  - workTeacherTasks() returning a string
+  - it accepts employee as an argument
+  - if the employee is a Director, it will call workDirectorTasks
+  - if the employee is a Teacher, it will call workTeacherTasks
 
-Create a class Director that will implement DirectorInterface
-
-  - workFromHome should return the string Working from home
-  - getCoffeeBreak should return the string Getting a coffee break
-  - workDirectorTasks should return the string Getting to director tasks
-
-Create a class Teacher that will implement TeacherInterface
-
-  - workFromHome should return the string Cannot work from home
-  - getCoffeeBreak should return the string Cannot have a break
-  - workTeacherTasks should return the string Getting to work
-
-Create a function createEmployee with the following requirements:
-
-  - It can return either a Director or a Teacher instance
-  - It accepts 1 arguments:
-    - salary(either number or string)
-  - if salary is a number and less than 500 - It should return a new Teacher. Otherwise it should return a Director
 */
 
 interface DirectorInterface {
@@ -77,6 +58,18 @@ function createEmployee(salary: number | string): Director | Teacher {
   }
 
   return new Director();
+}
+
+function isDirector(employee: Director | Teacher): employee is Director {
+  return employee instanceof Director;
+}
+
+function executeWork(employee: Director | Teacher): string {
+  if (isDirector(employee)) {
+    return employee.workDirectorTasks();
+  }
+
+  return employee.workTeacherTasks();
 }
 
 export default createEmployee;
