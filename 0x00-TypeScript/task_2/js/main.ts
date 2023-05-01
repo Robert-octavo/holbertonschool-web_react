@@ -1,12 +1,3 @@
-/*
-Write a String literal type named Subjects allowing a variable to have the value Math or History only. Write a function named teachClass:
-
-  - it takes todayClass as an argument
-  - it will return the string Teaching Math if todayClass is Math
-  - it will return the string Teaching History if todayClass is History
-
-*/
-
 interface DirectorInterface {
   workFromHome(): string;
   getCoffeeBreak(): string;
@@ -78,4 +69,11 @@ function teachClass(todayClass: Subjects): string {
   }
 }
 
-export default createEmployee;
+export {
+  Director,
+  Teacher,
+  createEmployee,
+  isDirector,
+  executeWork,
+  teachClass,
+};
