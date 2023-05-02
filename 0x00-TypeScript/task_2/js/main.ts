@@ -40,10 +40,10 @@ class Teacher implements TeacherInterface {
 
 function createEmployee(salary: number | string): Director | Teacher {
   if (typeof salary === 'number' && salary < 500) {
-    return new Teacher();
+    return new Teacher;
   }
 
-  return new Director();
+  return new Director;
 }
 
 function isDirector(employee: Director | Teacher): employee is Director {
@@ -68,6 +68,14 @@ function teachClass(todayClass: Subjects): string {
     return 'Teaching History';
   }
 }
+
+console.log(createEmployee(200));
+console.log(createEmployee(1000));
+console.log(createEmployee('$500'));
+console.log(executeWork(createEmployee(200)));
+console.log(executeWork(createEmployee(1000)));
+console.log(teachClass('Math'));
+console.log(teachClass('History'));
 
 export {
   Director,
