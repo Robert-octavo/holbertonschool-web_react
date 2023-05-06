@@ -1,9 +1,3 @@
-/*
-The file should import jquery and add three different
-paragraphs to the page body: (refer to this link under the
-Babel section for importing jQuery)
-*/
-
 import $ from 'jquery';
 
 const $body = $('body');
