@@ -1,13 +1,3 @@
-/*
-The file should import jquery and add the below elements in the following order:
-
-    Paragraph element: Holberton Dashboard
-    Paragraph element: Dashboard data for the students
-    Button element with the text Click here to get started
-    Add a paragraph element as so <p id='count'></p>
-    Add another paragraph: Copyright - Holberton School
-*/
-
 import $ from 'jquery';
 import _ from 'lodash';
 
