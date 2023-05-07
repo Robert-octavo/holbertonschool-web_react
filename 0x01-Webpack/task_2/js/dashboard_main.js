@@ -3,7 +3,7 @@ import _ from 'lodash';
 import '../css/main.css';
 import '../assets/holberton-logo.jpg';
 
-$('body').append(`<div id="logo"></div>`);
+$('body').append('<div id="logo"></div>');
 
 $('body').append('<p>Holberton Dashboard</p>');
 $('body').append('<p>Dashboard data for the students</p>');

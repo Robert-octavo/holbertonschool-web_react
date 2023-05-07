@@ -19,9 +19,9 @@ module.exports = {
         use: ["style-loader", "css-loader"],
       },
       {
-        test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/i,
+        test: /\.(gif|png|jpe?g|svg)$/i,
         // More information here https://webpack.js.org/guides/asset-modules/
-        type: "asset",
+        //type: "asset",
         use: [
           'file-loader',
           {
