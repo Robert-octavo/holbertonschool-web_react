@@ -1,14 +1,13 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const webpack = require('webpack');
 
 module.exports = {
   entry: {
     //main: "./src/index.js",
-    header: "./module/header/header.js",
-    body: "./module/body/body.js",
-    footer: "./module/footer/footer.js",
+    header: "./modules/header/header.js",
+    body: "./modules/body/body.js",
+    footer: "./modules/footer/footer.js",
   },
   output: {
     filename: "[name].bundle.js",
@@ -44,24 +43,19 @@ module.exports = {
       },
     ],
   },
-  Plugins: [
-    new HtmlWebpackPlugin({
-      template: "./index.html",
-    }),
+  plugins: [
+    new HtmlWebpackPlugin(),
     new CleanWebpackPlugin({
       cleanStaleWebpackAssets: false,
-    }),
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-    }),
-    new webpack.ProvidePlugin({
-      _: 'lodash',
-    }),
+    })
   ],
-  devTool: 'inline-source-map',
+  devtool: 'inline-source-map',
   optimization: {
     minimize: true,
+    //chunks
+    splitChunks: {
+      chunks: 'all'
+    },
   },  
   devServer: {
     contentBase: path.join(__dirname, 'public'),
