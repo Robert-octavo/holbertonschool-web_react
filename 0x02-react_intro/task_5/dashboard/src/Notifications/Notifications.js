@@ -8,9 +8,9 @@
 */
 
 import React from 'react';
-import { getLatestNotification } from './utils';
+import { getLatestNotification } from '../utils/utils';
 import './Notifications.css';
-import iconClose from './close-icon.png';
+import iconClose from '../assets/close-icon.png'
 
 
 const printMessage = () => {

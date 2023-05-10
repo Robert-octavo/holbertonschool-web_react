@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode production --config config/webpack.config.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "webpack server --open --mode development --config config/webpack.config.js"
   },
   "author": "",
@@ -20,6 +20,9 @@
     "webpack-dev-server": "^4.15.0"
   },
   "dependencies": {
+    "jest": "^27.5.1",
+    "enzyme": "^3.11.0",
+    "@testing-library/jest-dom": "^5.16.2",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.7.3",
     "file-loader": "^6.2.0",
