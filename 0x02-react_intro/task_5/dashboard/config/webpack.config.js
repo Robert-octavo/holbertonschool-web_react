@@ -15,8 +15,11 @@ module.exports = {
     maxAssetSize: 512000,
   },
   devtool: 'inline-source-map',
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
   devServer: {
-    /*static: path.join(__dirname, 'public'),*/
+    static: path.join(__dirname, '../dist'),
     hot: true,
     compress: true,
     port: 8564,
