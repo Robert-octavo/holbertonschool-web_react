@@ -1,0 +1,17 @@
+.Notifications {
+    /*Add padding and border*/
+    padding: 1rem;
+    border: 2px solid #e1484a;
+    border-style: dashed;
+}
+
+ul li[data-priority="default"] {
+    color: blue;
+}
+
+ul li[data-priority="urgent"] {
+    color: Red;
+}
+
+ul li:nth-child(3) {
+    font-weight: bold;}
