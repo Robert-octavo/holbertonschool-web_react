@@ -16,7 +16,8 @@ module.exports = {
   },
   devtool: 'inline-source-map',
   devServer: {
-    static: path.join(__dirname, 'public'),
+    /*static: path.join(__dirname, 'public'),*/
+    hot: true,
     compress: true,
     port: 8564,
   },
@@ -53,10 +54,10 @@ module.exports = {
       },
     ],
   },
-  plugins: [
+  /*plugins: [
     new HtmlWebpackPlugin(),
     new CleanWebpackPlugin({
       cleanStaleWebpackAssets: false,
     })
-  ],
+  ],*/
 };
