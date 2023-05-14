@@ -2,25 +2,6 @@
   text-align: center;
 }
 
-.App-body {
-  min-height: 50vh;
-  text-align: left;
-  margin-left: 3vw;
-}
-
-.App-body p {
-  margin-top: 4vw;
-  font-size: 1.2em;
-}
-
-#email {
-  margin-right: 10px;
-}
-
-#password {
-  margin-right: 10px;
-}
-
 .App-link {
   color: #61dafb;
 }
