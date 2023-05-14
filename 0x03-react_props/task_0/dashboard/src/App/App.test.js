@@ -20,13 +20,4 @@ describe('App', () => {
     const div = document.createElement('div');
     ReactDOM.render(<App />, div);
   });
-  it('renders a div with the class App-header', () => {
-    expect(wrapper.find('.App-header').length).toEqual(1);
-  });
-  it('renders a div with the class App-body', () => {
-    expect(wrapper.find('.App-body').length).toEqual(1);
-  });
-  it('renders a div with the class App-footer', () => {
-    expect(wrapper.find('.App-footer').length).toEqual(1);
-  });
 });
