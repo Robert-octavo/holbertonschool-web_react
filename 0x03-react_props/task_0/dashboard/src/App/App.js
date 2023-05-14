@@ -1,12 +1,8 @@
-import logo from '../assets/holberton-logo.jpg';
-import { getFullYear, getFooterCopy } from '../utils/utils';
 import './App.css';
 import React from 'react';
 
 import Header from '../Header/Header';
-
-const year = getFullYear();
-const footer = getFooterCopy(true);
+import Footer from '../Footer/Footer';
 
 function App() {
   return (
@@ -20,9 +16,7 @@ function App() {
         <input type="password" id="password" name="password" />
         <button type="button">OK</button>
       </div>
-      <footer className="App-footer">
-        <p>Copyright {year} - {footer}</p>
-      </footer>
+      <Footer />
     </div>
   );
 }
