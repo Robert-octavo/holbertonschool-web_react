@@ -3,3 +3,8 @@
   font-style: italic;
   font-weight: bold;
 }
+
+.App-footer p {
+  /*center text*/
+  text-align: center;
+}
