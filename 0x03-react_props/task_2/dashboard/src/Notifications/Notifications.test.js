@@ -1,14 +1,8 @@
-/*
-
-    test that Notifications renders without crashing
-    verify that Notifications renders three list items
-    verify that Notifications renders the text Here is the list of notifications
-
-*/
 
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Notifications from './Notifications';
+import NotificationItem from './NotificationItem';
 import { shallow } from 'enzyme';
 
 describe('Notifications', () => {
@@ -20,10 +14,13 @@ describe('Notifications', () => {
         const wrapper = shallow(<Notifications />);
         expect(wrapper.exists());
   });
-  it('renders three list items', () => {
-    expect(wrapper.find('li').length).toEqual(3);
-  });
   it('renders the text Here is the list of notifications', () => {
     expect(wrapper.find('.Notifications p').text()).toEqual('Here is the list of notifications');
+  });
+  it('renders the right html for the second NotificationItem element', () => {
+    expect(wrapper.find(NotificationItem).at(1).html()).toEqual('<li data-priority="urgent">New resume available</li>');
+  });
+  it('check that the component renders NotificationItem elements', () => {
+    expect(wrapper.find(NotificationItem)).toHaveLength(3);
   });
 });

@@ -1,16 +1,9 @@
-/*
-
-    It should import React
-    It should export a function
-    The function should return a div with the class Notifications
-    The div should contain a paragraph with the text Here is the list of notifications
-    import the file Notifications.css.
-*/
-
+// Component Notifications
 import React from 'react';
 import { getLatestNotification } from '../utils/utils';
 import './Notifications.css';
 import iconClose from '../assets/close-icon.png'
+import NotificationItem from './NotificationItem';
 
 
 const printMessage = () => {
@@ -36,9 +29,12 @@ const Notifications = () => {
         <img src={iconClose} alt="Close" />
       </button>
       <ul>
-        <li data-priority="default">New course available</li>
+        <NotificationItem type="default" value="New course available" />
+        <NotificationItem type="urgent" value="New resume available" />
+        <NotificationItem type="urgent" html={{ __html: getLatestNotification() }} />
+        {/* <li data-priority="default">New course available</li>
         <li data-priority="urgent">New resume available</li>
-        <li data-priority="urgent" dangerouslySetInnerHTML={{__html: getLatestNotification()}}></li>
+        <li data-priority="urgent" dangerouslySetInnerHTML={{__html: getLatestNotification()}}></li> */}
       </ul>
     </div>
   )
