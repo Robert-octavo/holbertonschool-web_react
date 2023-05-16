@@ -52,7 +52,8 @@
       "/^App\/(.*)$/": "<rootDir>/src/App/$1",
       "/^Login\/(.*)$/": "<rootDir>/src/Login/$1",
       "/^Notifications\/(.*)$/": "<rootDir>/src/Notifications/$1",
-      "/^utils\/(.*)$/": "<rootDir>/src/utils/$1"
+      "/^utils\/(.*)$/": "<rootDir>/src/utils/$1",
+      "/^CourseList\/(.*)$/": "<rootDir>/src/CourseList/$1"
     }
   },
   "moduleFileExtensions": [
