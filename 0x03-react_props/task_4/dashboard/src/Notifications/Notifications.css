@@ -30,8 +30,7 @@ ul li:nth-child(3) {
 }
 
 .menuItem {
-    position: relative;
-    left: 220px;
     margin-bottom: 10px;
     font-weight: bold;
+    text-align: right;
 }
