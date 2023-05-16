@@ -1,4 +1,5 @@
 import React, { Component, Fragment} from "react";
+import PropTypes from "prop-types";
 import './Notifications.css';
 
 const NotificationItem = ({
@@ -24,6 +25,14 @@ const NotificationItem = ({
       {getLi()}
     </Fragment>
   );
+};
+
+NotificationItem.propTypes = {
+  type: PropTypes.string.isRequired,
+  html: PropTypes.shape({
+    __html: PropTypes.string
+  }),
+  value: PropTypes.string
 };
 
 NotificationItem.defaultProps = {
