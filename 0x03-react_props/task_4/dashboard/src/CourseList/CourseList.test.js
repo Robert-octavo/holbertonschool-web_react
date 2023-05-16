@@ -6,21 +6,15 @@
 
 import React from 'react';
 import { shallow } from 'enzyme';
+import CourseList from './CourseList';
 
-import App from './App';
-import CourseList from '../CourseList/CourseList';
-
-describe('App', () => {
-  it('renders without crashing', () => {
-    const wrapper = shallow(<App />);
+describe('CourseList', () => {
+  it('renders a CourseList component', () => {
+    const wrapper = shallow(<CourseList />);
     expect(wrapper.exists());
   });
-  it('renders a CourseList component', () => {
-    const wrapper = shallow(<App />);
-    expect(wrapper.find(CourseList)).toHaveLength(1);
-  });
   it('CourseList it renders the 5 different rows', () => {
-    const wrapper = shallow(<App />);
-    expect(wrapper.find(CourseList).children()).toHaveLength(5);
+    const wrapper = shallow(<CourseList />);
+    expect(wrapper.find('CourseListRow').length).toEqual(5);
   });
 });

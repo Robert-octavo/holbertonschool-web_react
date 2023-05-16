@@ -20,7 +20,7 @@ describe('NotificationItem', () => {
     });
     it('renders a list item', () => {
         const wrapper = shallow(<NotificationItem />);
-        expect(wrapper.find('li')).toHaveLength(1);
+        expect(wrapper.find('li').length).toEqual(1);
     });
     it('renders a list item with the right text', () => {
         const wrapper = shallow(<NotificationItem value="test" />);
