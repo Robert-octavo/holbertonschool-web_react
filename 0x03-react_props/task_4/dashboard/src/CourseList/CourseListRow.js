@@ -3,20 +3,29 @@ import PropTypes from 'prop-types';
 
 
 function CourseListRow({ isHeader, textFirstCell, textSecondCell }) {
-  let row;
-  if (isHeader) {
-    if (textSecondCell === null) {
-      row = /*#__PURE__*/React.createElement("th", {
-        colSpan: "2"
-      }, textFirstCell);
+  if (isHeader === true) {
+        if (textSecondCell === null) {
+            return (
+                <tr>
+                    <th colSpan="2">{textFirstCell}</th>
+                </tr>
+            );
+        } else {
+            return (
+                <tr>
+                    <th>{textFirstCell}</th>
+                    <th>{textSecondCell}</th>
+                </tr>
+            );
+        }
     } else {
-      row = /*#__PURE__*/React.createElement("th", null, textFirstCell, /*#__PURE__*/React.createElement("th", null, textSecondCell));
+        return (
+            <tr>
+                <td>{textFirstCell}</td>
+                <td>{textSecondCell}</td>
+            </tr>
+        );
     }
-  } else {
-    row = /*#__PURE__*/React.createElement("tr", null, /*#__PURE__*/React.createElement("td", null, textFirstCell), /*#__PURE__*/React.createElement("td", null, textSecondCell));
-  }
-
-  return row;
 }
 
 CourseListRow.propTypes = {
@@ -28,7 +37,6 @@ CourseListRow.propTypes = {
 CourseListRow.defaultProps = {
   isHeader: false,
   textSecondCell: null
-  
 };
 
 export default CourseListRow;

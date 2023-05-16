@@ -2,3 +2,17 @@
 .App-link {
   color: #61dafb;
 }
+
+.notification-container {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  right: 0;
+  margin: 1rem;
+  padding: 1rem;
+}
+
+hr {
+  width: 100%;
+  color: #e0354b;
+}

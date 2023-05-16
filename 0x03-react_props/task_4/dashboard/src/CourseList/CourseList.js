@@ -1,10 +1,10 @@
-import react from 'react';
+import React  from 'react';
 import CourseListRow from './CourseListRow';
 import './CourseList.css';
 
 function CourseList() {
   return React.createElement("div", {
-    classname: "table"
+    className: "table"
   }, React.createElement("table", {
     id: "CourseList"
   }, React.createElement("thead", null, React.createElement(CourseListRow, {

@@ -15,8 +15,11 @@ When isLoggedIn is true, display the CourseList screen*/
   return (
     <React.Fragment>
       <div className="App">
-        <Notifications />
-        <Header />
+        <div className="notification-container">
+          <Notifications />
+          <Header />
+        </div>
+        <hr></hr>      
         <div>{ login }</div>
         <Footer />
       </div>
@@ -32,7 +35,7 @@ App.propTypes = {
 };
 
 App.defaultProps = {
-  isLoggedIn: false
+  isLoggedIn: true
 };
 
 export default App;
