@@ -21,26 +21,7 @@ const listCourses = [
   {id: 3, name: 'React', credit: 40},
 ];
 
-// function App( { isLoggedIn } ) {
-//   /*When isLoggedIn is false, display the Login screen
-// When isLoggedIn is true, display the CourseList screen*/ 
-//   let login = isLoggedIn ? <CourseList listCourses={listCourses}/> : <Login />;
-//   return (
-//     <React.Fragment>
-//       <div className="App">
-//         <div className="notification-container">
-//           <Notifications listNotifications={listNotifications}/>
-//           <Header />
-//         </div>
-//         <hr></hr>      
-//         <div>{ login }</div>
-//         <Footer />
-//       </div>
-//     </React.Fragment>
-//   );
-// }
-
-class App extends Component {
+export default class App extends Component {
 
   render() {
     const { isLoggedIn } = this.props;
@@ -73,5 +54,3 @@ App.propTypes = {
 App.defaultProps = {
   isLoggedIn: false
 };
-
-export default App;
