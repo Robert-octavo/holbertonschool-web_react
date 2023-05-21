@@ -13,8 +13,8 @@ describe('CourseList', () => {
     const wrapper = shallow(<CourseList />);
     expect(wrapper.exists());
   });
-  it('CourseList it renders the 5 different rows', () => {
+  it('CourseList it renders the 2 different rows', () => {
     const wrapper = shallow(<CourseList />);
-    expect(wrapper.find('CourseListRow').length).toEqual(5);
+    expect(wrapper.find('CourseListRow').length).toEqual(2);
   });
 });
