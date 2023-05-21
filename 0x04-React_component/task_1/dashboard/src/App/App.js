@@ -22,8 +22,30 @@ const listCourses = [
 ];
 
 export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.handleLogout = this.handleLogout.bind(this);
+  }
+
+  componentDidMount() {
+    document.addEventListener("keydown", this.handleLogout);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.handleLogout);
+  }
+
+  handleLogout(e) {
+    if (e.ctrlKey && e.key === 'h') {
+      e.preventDefault();
+      alert('Logging you out');
+      this.props.logOut();
+    }
+  }
 
   render() {
+    /*Add a props named logOut with the props type being function*/
+    const { logOut } = this.props;
     const { isLoggedIn } = this.props;
     /*When isLoggedIn is false, display the Login screen
     When isLoggedIn is true, display the CourseList screen*/
@@ -48,9 +70,11 @@ export default class App extends Component {
 Create a property isLoggedIn. It should be false by default
 */
 App.propTypes = {
-  isLoggedIn: PropTypes.bool
+  isLoggedIn: PropTypes.bool,
+  logOut: PropTypes.func
 };
 
 App.defaultProps = {
-  isLoggedIn: false
+  isLoggedIn: false,
+  logOut: () => {}
 };
