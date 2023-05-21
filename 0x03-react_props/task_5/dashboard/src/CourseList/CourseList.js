@@ -12,10 +12,10 @@ import './CourseList.css';
   - Make sure to add a key to help React optimize rendering
 */
 
-function CourseList() {
+function CourseList( {listCourses} ) {
   return (
     <div>
-      <div class="table">
+      <div className="table">
         <table id="CourseList">
           <thead>
             <CourseListRow isHeader={true} textFirstCell="Available courses"/>

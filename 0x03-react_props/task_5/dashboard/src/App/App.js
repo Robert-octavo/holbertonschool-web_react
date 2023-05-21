@@ -1,6 +1,7 @@
 import './App.css';
 import React from 'react';
 import PropTypes from 'prop-types'; 
+import { getLatestNotification } from '../utils/utils';
 
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
