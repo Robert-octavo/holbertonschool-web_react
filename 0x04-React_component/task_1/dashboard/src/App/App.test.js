@@ -1,13 +1,10 @@
 /*
-four checks:
-
-    It should contain the Notifications component
-    It should contain the Header component
-    It should contain the Login component
-    It should contain the Footer component
-
-    verify that App renders a div with the class App-footer
+Create a test to verify that when the keys control and h are pressed the logOut function, passed as a prop, is called and the alert function is called with the string Logging you out
 */
+
+/**
+ * @jest-environment jsdom
+ */
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -18,6 +15,8 @@ import Login from '../Login/Login';
 import Footer from '../Footer/Footer';
 import CourseList from '../CourseList/CourseList';
 import { shallow } from 'enzyme';
+
+
 
 describe('App', () => {
   let wrapper;
@@ -69,5 +68,22 @@ describe('App', () => {
   });
   it('Login is not displayed', () => {
     expect(wrapper.find(Login)).toHaveLength(0);
+  });
+});
+
+/*Add a test to check that when the keys control and h are pressed the logOut function, passed as a prop, is called and the alert function is called with the string Logging you out*/
+
+describe('App', () => {
+  let wrapper;
+  beforeEach(() => {
+    wrapper = shallow(<App />);
+  });
+  it('logOut function is called', () => {
+    const logOut = jest.fn(() => void(0));
+    window.alert = logOut;
+    events.keydown({ keyCode: 72, ctrlKey: true });
+    //document.dispatchEvent(event);
+    expect(logOut).toHaveBeenCalled();
+    expect(logOut).toHaveBeenCalledWith('Logging you out');
   });
 });
