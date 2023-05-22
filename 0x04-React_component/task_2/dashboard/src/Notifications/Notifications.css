@@ -1,0 +1,36 @@
+.Notifications {
+    /*Add padding and border*/
+    padding: 1rem;
+    border: 2px solid #e1484a;
+    border-style: dashed;
+    /*small conteiner*/
+    width: auto;
+    height: 50%;
+}
+p {
+    margin:0;
+}
+
+ul {
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+    padding-bottom: 0.5rem;
+}
+
+ul li[data-priority="default"] {
+    color: blue;
+}
+
+ul li[data-priority="urgent"] {
+    color: Red;
+}
+
+ul li:nth-child(3) {
+    font-weight: bold;
+}
+
+.menuItem {
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-align: right;
+}
