@@ -10,6 +10,7 @@ import Login from '../Login/Login';
 import Notifications from '../Notifications/Notifications';
 import CourseList from '../CourseList/CourseList';
 import BodySection from '../BodySection/BodySection';
+import BodySectionWithMarginBottom from '../BodySection/BodySectionWithMarginBottom';
 
 const listNotifications = [
   {id: 1, type: 'default', value: 'New course available'},
@@ -51,7 +52,7 @@ export default class App extends Component {
     const { isLoggedIn } = this.props;
     /*When isLoggedIn is false, display the Login screen
     When isLoggedIn is true, display the CourseList screen*/
-    let login = isLoggedIn ? <CourseList listCourses={listCourses}/> : <Login />;
+    let login = isLoggedIn ? <BodySectionWithMarginBottom title="Course List"><CourseList listCourses={listCourses}/></BodySectionWithMarginBottom> : <BodySectionWithMarginBottom title="Log in to continue"><Login /></BodySectionWithMarginBottom>;
     return (
       <React.Fragment>
         <div className="App">
