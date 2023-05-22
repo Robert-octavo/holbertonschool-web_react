@@ -9,6 +9,7 @@ import Footer from '../Footer/Footer';
 import Login from '../Login/Login';
 import Notifications from '../Notifications/Notifications';
 import CourseList from '../CourseList/CourseList';
+import BodySection from '../BodySection/BodySection';
 
 const listNotifications = [
   {id: 1, type: 'default', value: 'New course available'},
@@ -60,6 +61,10 @@ export default class App extends Component {
           </div>
           <hr></hr>      
           <div>{ login }</div>
+          <hr></hr>
+          <BodySection title="News from the School">
+            <p>Some random text</p>
+          </BodySection>
           <Footer />
         </div>
       </React.Fragment>
