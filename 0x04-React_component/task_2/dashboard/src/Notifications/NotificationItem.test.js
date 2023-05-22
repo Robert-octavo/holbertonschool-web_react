@@ -27,3 +27,25 @@ describe('NotificationItem', () => {
         expect(wrapper.find('li').text()).toEqual('test');
     });
 });
+
+
+/*
+    Create a test, that will pass a spy as the markAsRead property
+    Check that when simulating a click on the component, the spy is called with the right ID argument
+*/
+
+describe('NotificationItem', () => {
+    let wrapper;
+    beforeEach(() => {
+        const wrapper = shallow(<NotificationItem />);
+    });
+    it('calls markAsRead when clicked', () => {
+        const wrapper = shallow(<NotificationItem />);
+        const instance = wrapper.instance();
+        const spy = jest.spyOn(instance, 'markAsRead');
+        instance.forceUpdate();
+        wrapper.find('li').simulate('click');
+        expect(spy).toHaveBeenCalled();
+        expect(spy).toHaveBeenCalledWith(1);
+    });
+});

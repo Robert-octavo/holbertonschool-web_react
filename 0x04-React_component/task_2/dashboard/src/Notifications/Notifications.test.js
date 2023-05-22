@@ -56,3 +56,23 @@ describe('Notifications test 2', () => {
     expect(wrapper.find('Notifications').length).toEqual(0);
   });
 });
+
+/*
+    Create a test, that will mockup the console.log function
+    Check that when calling the function markAsRead on an instance of the component, the spy is being called with the right message
+*/
+
+describe('Notifications test 3', () => {
+  let wrapper;
+  beforeEach(() => {
+    const wrapper = shallow(<Notifications />);
+  });
+  it('mockup the console.log function', () => {
+    const spy = jest.spyOn(console, 'log');
+    const wrapper = shallow(<Notifications />);
+    const instance = wrapper.instance();
+    instance.markAsRead(1);
+    expect(spy).toHaveBeenCalledWith('Notification 1 has been marked as read');
+    spy.mockRestore();
+  });
+});
