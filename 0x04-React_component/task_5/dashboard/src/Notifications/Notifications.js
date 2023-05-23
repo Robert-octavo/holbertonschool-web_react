@@ -24,6 +24,14 @@ const myStyle = {
 
 
 export default class Notifications extends Component {
+
+  shouldComponentUpdate(nextProps) {
+    if (nextProps.listNotifications.length > this.props.listNotifications.length) {
+      return true;
+    }
+    return false;
+  }
+
   render() {
     const { displayDrawer } = this.props;
     const { listNotifications } = this.props;
