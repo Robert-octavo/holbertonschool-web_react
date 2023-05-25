@@ -1,0 +1,29 @@
+.table {
+    height: 600px;
+}
+
+#CourseList {
+    width: 90%;
+    margin: 60px;
+    border-collapse: collapse;
+}
+
+#CourseList td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+#CourseList th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+#CourseList tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+#CourseList th[colspan="2"] {
+    text-align: center;
+}
