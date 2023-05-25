@@ -49,3 +49,36 @@ describe('NotificationItem', () => {
         expect(spy).toHaveBeenCalledWith(1);
     });
 });
+
+/*
+
+    The first check should verify that when updating the props of the component with the same list, the component doesn’t rerender
+    The second check should verify that when updating the props of the component with a longer list, the component does rerender
+*/
+
+describe('NotificationItem', () => {
+    let wrapper;
+    beforeEach(() => {
+        const wrapper = shallow(<NotificationItem />);
+    });
+    it('should not rerender', () => {
+        const wrapper = shallow(<NotificationItem listNotifications={listNotifications} />);
+        const shouldComponentUpdate = jest.spyOn(
+            NotificationItem.prototype,
+            'shouldComponentUpdate'
+        );
+        wrapper.setProps({ listNotifications: listNotifications });
+        expect(shouldComponentUpdate).toHaveBeenCalled();
+        expect(shouldComponentUpdate).toHaveLastReturnedWith(false);
+    });
+    it('should rerender', () => {
+        const wrapper = shallow(<NotificationItem listNotifications={listNotifications} />);
+        const shouldComponentUpdate = jest.spyOn(
+            NotificationItem.prototype,
+            'shouldComponentUpdate'
+        );
+        wrapper.setProps({ listNotifications: longerListNotifications });
+        expect(shouldComponentUpdate).toHaveBeenCalled();
+        expect(shouldComponentUpdate).toHaveLastReturnedWith(true);
+    });
+});
