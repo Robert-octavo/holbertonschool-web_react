@@ -38,3 +38,33 @@ describe("Header component", () => {
         );
     });
 });
+
+/*
+Add a test that mounts the Header component with a default context value. Verify that the logoutSection is not created
+Add a test that mounts the Header component with a user defined (isLoggedIn is true and an email is set). Verify that the logoutSection is created
+Add a test that mounts the Header component with a user defined (isLoggedIn is true and an email is set) and the logOut is linked to a spy. Verify that clicking on the link is calling the spy
+*/
+describe("Header component", () => {
+    let wrapper;
+    beforeEach(() => {
+        wrapper = shallow(<Header />);
+        StyleSheetTestUtils.suppressStyleInjection();
+    });
+    afterEach(() => {
+        StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+    });
+    it("mounts the Header component with a default context value. Verify that the logoutSection is not created", () => {
+        expect(wrapper.find(".logoutSection")).toHaveLength(0);
+    });
+    it("mounts the Header component with a user defined (isLoggedIn is true and an email is set). Verify that the logoutSection is created", () => {
+        wrapper.setProps({ user: { email: "", password: "", isLoggedIn: true } });
+        expect(wrapper.find(".logoutSection")).toHaveLength(1);
+    });
+    it("mounts the Header component with a user defined (isLoggedIn is true and an email is set) and the logOut is linked to a spy. Verify that clicking on the link is calling the spy", () => {
+        const logOut = jest.fn(() => undefined);
+        wrapper.setProps({ user: { email: "", password: "", isLoggedIn: true }, logOut });
+        expect(logOut).toHaveBeenCalledTimes(0);
+        wrapper.find(".logoutSection a").simulate("click", { preventDefault: () => undefined });
+        expect(logOut).toHaveBeenCalledTimes(1);
+    });
+});

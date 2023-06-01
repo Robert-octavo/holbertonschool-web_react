@@ -128,3 +128,4 @@ describe('App', () => {
     expect(wrapper.state().displayDrawer).toEqual(false);
   });
 });
+
