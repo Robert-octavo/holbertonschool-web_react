@@ -89,3 +89,36 @@ describe('Notifications test 3', () => {
     spy.mockRestore();
   });
 });
+
+/*
+
+    Add a test to verify that clicking on the menu item calls handleDisplayDrawer
+    Add a test to verify that clicking on the button calls handleHideDrawer
+*/
+
+describe('Notifications test 4', () => {
+  let wrapper;
+  beforeEach(() => {
+    const wrapper = shallow(<Notifications />);
+    StyleSheetTestUtils.suppressStyleInjection();
+  });
+  afterEach(() => {
+    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+  });
+  it('handleDisplayDrawer', () => {
+    const wrapper = shallow(<Notifications />);
+    const instance = wrapper.instance();
+    const spy = jest.spyOn(instance, 'handleDisplayDrawer');
+    instance.handleDisplayDrawer();
+    expect(spy).toHaveBeenCalled();
+    spy.mockRestore();
+  });
+  it('handleHideDrawer', () => {
+    const wrapper = shallow(<Notifications />);
+    const instance = wrapper.instance();
+    const spy = jest.spyOn(instance, 'handleHideDrawer');
+    instance.handleHideDrawer();
+    expect(spy).toHaveBeenCalled();
+    spy.mockRestore();
+  });
+});

@@ -67,6 +67,10 @@ describe('App', () => {
   let wrapper;
   beforeEach(() => {
     wrapper = shallow(<App isLoggedIn={true} />);
+    StyleSheetTestUtils.suppressStyleInjection();
+  });
+  afterEach(() => {
+    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
   });
   it('CourseList is displayed', () => {
     expect(wrapper.find(CourseList)).toHaveLength(1);
@@ -82,6 +86,10 @@ describe('App', () => {
   let wrapper;
   beforeEach(() => {
     wrapper = shallow(<App />);
+    StyleSheetTestUtils.suppressStyleInjection();
+  });
+  afterEach(() => {
+    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
   });
   it('logOut function is called', () => {
     const logOut = jest.fn(() => void(0));
@@ -90,5 +98,33 @@ describe('App', () => {
     //document.dispatchEvent(event);
     expect(logOut).toHaveBeenCalled();
     expect(logOut).toHaveBeenCalledWith('Logging you out');
+  });
+});
+
+/*
+
+    Add a test to verify that the default state for displayDrawer is false. Verify that after calling handleDisplayDrawer, the state should now be true
+    Add a test to verify that after calling handleHideDrawer, the state is updated to be false
+*/
+
+describe('App', () => {
+  let wrapper;
+  beforeEach(() => {
+    wrapper = shallow(<App />);
+    StyleSheetTestUtils.suppressStyleInjection();
+  });
+  afterEach(() => {
+    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+  });
+  it('default state for displayDrawer is false', () => {
+    expect(wrapper.state().displayDrawer).toEqual(false);
+  });
+  it('handleDisplayDrawer', () => {
+    wrapper.instance().handleDisplayDrawer();
+    expect(wrapper.state().displayDrawer).toEqual(true);
+  });
+  it('handleHideDrawer', () => {
+    wrapper.instance().handleHideDrawer();
+    expect(wrapper.state().displayDrawer).toEqual(false);
   });
 });
