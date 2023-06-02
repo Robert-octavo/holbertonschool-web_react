@@ -1,5 +1,5 @@
 // Component Notifications
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { getLatestNotification } from '../utils/utils';
 import PropTypes from 'prop-types';
 import iconClose from '../assets/close-icon.png'
@@ -23,19 +23,25 @@ const myStyle = {
 }
 
 
-export default class Notifications extends Component {
+export default class Notifications extends PureComponent {
   constructor(props) {
     super(props);
   }
 
-  shouldComponentUpdate(nextProps) {
+  /*shouldComponentUpdate(nextProps) {
     return (
       nextProps.listNotifications.length > this.props.listNotifications.length || nextProps.displayDrawer !== this.props.displayDrawer
     );
-  }
+  }*/
 
   render() {
-    const {listNotifications, displayDrawer, handleDisplayDrawer, handleHideDrawer } = this.props;
+    const {
+      listNotifications, 
+      displayDrawer, 
+      handleDisplayDrawer, 
+      handleHideDrawer, 
+      markNotificationAsRead 
+    } = this.props;
     
     console.log('after render',{displayDrawer});
     return (
@@ -49,8 +55,18 @@ export default class Notifications extends Component {
               <img src={iconClose} alt="Close" />
             </button>
             <ul className={css(styles.ul, styles.li, styles.dataProperty)}>
-              {listNotifications.length === 0 ? (<NotificationItem id={0} value="No new notification for now" type='no-new' markAsRead={this.markAsRead} />) : <></>}
-              {listNotifications.map((notification) => (<NotificationItem id={notification.id} key={notification.id} type={notification.type} value={notification.value} html={notification.html} markAsRead={this.markAsRead} />))}
+              {listNotifications.length === 0 ? (<NotificationItem id={0} value="No new notification for now" type='no-new' markAsRead={markNotificationAsRead} />) : <></>}
+              {listNotifications.map((notification) => (
+                <NotificationItem 
+                  id={notification.id}
+                  key={notification.id}
+                  type={notification.type}
+                  value={notification.value}
+                  html={notification.html}
+                  markAsRead={markNotificationAsRead}
+                />
+                ))
+              }
             </ul>
           </div>
         )}
@@ -58,10 +74,10 @@ export default class Notifications extends Component {
     )
   }
   /*Create a new markAsRead function within the Notifications
-  class. It accepts one argument: id(number)*/
+  class. It accepts one argument: id(number)
   markAsRead(id) {
     console.log(`Notification ${id} has been marked as read`);
-  }
+  }*/
 };
 
 
@@ -136,12 +152,14 @@ Notifications.propTypes = {
     value: PropTypes.string
   })),
   handleDisplayDrawer: PropTypes.func,
-  handleHideDrawer: PropTypes.func
+  handleHideDrawer: PropTypes.func,
+  markNotificationAsRead: PropTypes.func
 };
 
 Notifications.defaultProps = {
   displayDrawer: false,
   listNotifications: [],
   handleDisplayDrawer: () => {},
-  handleHideDrawer: () => {}
+  handleHideDrawer: () => {},
+  markNotificationAsRead: () => {}
 };

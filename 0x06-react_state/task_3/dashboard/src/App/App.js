@@ -32,7 +32,7 @@ export default class App extends Component {
     this.handleLogout = this.handleLogout.bind(this);
     this.handleDisplayDrawer = this.handleDisplayDrawer.bind(this);
     this.handleHideDrawer = this.handleHideDrawer.bind(this);
-    this.state = { displayDrawer: true, user: user, logOut: this.logOut };
+    this.state = { displayDrawer: true, user: user, logOut: this.logOut, listNotifications: listNotifications };
     this.logOut = this.logOut.bind(this);
     this.logIn = this.logIn.bind(this);
   }
@@ -71,6 +71,12 @@ export default class App extends Component {
     console.log('displayDrawer false');
   }
 
+  markNotificationAsRead(id) {
+    console.log(`Notification ${id} has been marked as read`);
+    /*the function is called, it remove the notification with that id from the list of notifications within the state*/
+    this.setState({ listNotifications: this.state.listNotifications.filter((notification) => {return notification.id !== id}) });
+  }
+
   render() {
     /*Add a props named logOut with the props type being function*/
     // const { logOut } = this.props;
@@ -93,6 +99,7 @@ export default class App extends Component {
                 displayDrawer={displayDrawer}
                 handleDisplayDrawer={this.handleDisplayDrawer}
                 handleHideDrawer={this.handleHideDrawer}
+                markNotificationAsRead={this.markNotificationAsRead}
               />
               <Header />
             </div>

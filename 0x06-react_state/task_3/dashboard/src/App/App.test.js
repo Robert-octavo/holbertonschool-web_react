@@ -129,3 +129,42 @@ describe('App', () => {
   });
 });
 
+/*
+Add a test to verify that markNotificationAsRead works as intended. You can for example set the state with a mock list of notifications, then call the function and verify that the state of the container has been updated <correctly></correctly>
+*/
+
+describe('App', () => {
+  let wrapper;
+  beforeEach(() => {
+    wrapper = shallow(<App />);
+    StyleSheetTestUtils.suppressStyleInjection();
+  });
+  afterEach(() => {
+    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+  });
+  it('markNotificationAsRead', () => {
+    const wrapper = shallow(<App />);
+    const instance = wrapper.instance();
+    const id = 1;
+    const notifications = [
+      {
+        id: 1,
+        type: 'default',
+        value: 'New course available',
+      },
+      {
+        id: 2,
+        type: 'urgent',
+        value: 'New resume available',
+      },
+      {
+        id: 3,
+        type: 'urgent',
+        html: { __html: getLatestNotification() },
+      },
+    ];
+    wrapper.setState({ notifications: notifications });
+    instance.markNotificationAsRead(id);
+    expect(wrapper.state().notifications[0].isRead).toEqual(true);
+  });
+});

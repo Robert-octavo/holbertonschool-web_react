@@ -91,7 +91,6 @@ describe('Notifications test 3', () => {
 });
 
 /*
-
     Add a test to verify that clicking on the menu item calls handleDisplayDrawer
     Add a test to verify that clicking on the button calls handleHideDrawer
 */
