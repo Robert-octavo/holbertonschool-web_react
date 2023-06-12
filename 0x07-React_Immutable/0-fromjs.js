@@ -5,7 +5,9 @@ fromJS of the Immutable.js library*/
 
 import { fromJS } from 'immutable';
 
-const getImmutableObject = (obj) => fromJS(obj);
+export default function getImmutableObject(obj) {
+  return fromJS(obj);
+}
 
 const obj = {
   fear: true,
