@@ -7,9 +7,9 @@ export default function accessImmutableObject(object, array) {
 
 const obj = accessImmutableObject({
   name: {
-    first: "Guillaume",
-    last: "Salva"
+    first: 'Guillaume',
+    last: 'Salva',
   }
-}, ['name', 'first'])
+}, ['name', 'first']);
 
 console.log(obj);
