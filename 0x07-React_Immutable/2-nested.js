@@ -9,7 +9,7 @@ const obj = accessImmutableObject({
   name: {
     first: 'Guillaume',
     last: 'Salva',
-  }
+  },
 }, ['name', 'first']);
 
 console.log(obj);
