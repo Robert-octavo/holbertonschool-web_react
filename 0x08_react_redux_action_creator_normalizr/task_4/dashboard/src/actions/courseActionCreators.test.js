@@ -1,9 +1,3 @@
-/*
-write a test for the selectCourse action. Calling the creator with 1 as argument should return: { type: SELECT_COURSE, index: 1 }
-
-Write a test for the unSelectCourse action. Calling the creator with 1 as argument should return: { type: UNSELECT_COURSE, index: 1 } 
-*/
-
 import { expect as expectChai } from 'chai';
 import selectCourse from './courseActionCreators';
 import unSelectCourse from './courseActionCreators';
