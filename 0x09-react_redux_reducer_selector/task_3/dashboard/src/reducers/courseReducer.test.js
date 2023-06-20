@@ -1,12 +1,3 @@
-/*
-suite for the new reducer. Define the following tests:
-
-    Test that the default state returns an empty array
-    Test that FETCH_COURSE_SUCCESS returns the data passed
-    Test that SELECT_COURSE returns the data with the right item updated
-    Test that UNSELECT_COURSE returns the data with the right item updated
-*/  
-
 import courseReducer from './courseReducer';
 import { 
   FETCH_COURSE_SUCCESS,
