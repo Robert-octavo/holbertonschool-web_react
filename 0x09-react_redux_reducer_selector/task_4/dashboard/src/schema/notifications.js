@@ -26,3 +26,7 @@ export default function getAllNotificationsByUser(userId) {
 
   return res;
 };
+
+export default function notificationsNormalizer(data) {
+  return normalize(data, List(notification)).entities;
+};
