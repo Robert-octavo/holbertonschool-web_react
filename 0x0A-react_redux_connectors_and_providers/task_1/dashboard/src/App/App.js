@@ -171,4 +171,10 @@ App.defaultProps = {
   // logOut: () => {}
 };
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = {
+  displayNotificationDrawer,
+  hideNotificationDrawer,
+  logOut,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
