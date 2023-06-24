@@ -15,6 +15,8 @@ import BodySectionWithMarginBottom from '../BodySection/BodySectionWithMarginBot
 import AppContext from './AppContext';
 import { user, logOut } from '../App/AppContext';
 
+import { displayNotificationDrawer, hideNotificationDrawer } from '../actions/uiActionCreators';
+
 const listNotifications = [
   {id: 1, type: 'default', value: 'New course available'},
   {id: 2, type: 'urgent', value: 'New resume available'},
@@ -80,9 +82,8 @@ class App extends Component {
 
   render() {
     /*Add a props named logOut with the props type being function*/
-    // const { logOut } = this.props;
-    // const { isLoggedIn } = this.props;
-    const { displayDrawer, logOut, user, user: {isLoggedIn} } = this.state;
+    const { logOut, user, listNotifications } = this.state;
+    const { isLoggedIn, displayDrawer, hideNotificationDrawer, displayNotificationDrawer } = this.props;
     const value = { user, logOut };
 
     
@@ -98,8 +99,8 @@ class App extends Component {
               <Notifications 
                 listNotifications={listNotifications}
                 displayDrawer={displayDrawer}
-                handleDisplayDrawer={this.handleDisplayDrawer}
-                handleHideDrawer={this.handleHideDrawer}
+                handleDisplayDrawer={displayNotificationDrawer}
+                handleHideDrawer={hideNotificationDrawer}
                 markNotificationAsRead={this.markNotificationAsRead}
               />
               <Header />
@@ -152,9 +153,10 @@ component is already using
 
 export function mapStateToProps(state) {
   return {
-    isLoggedIn: state.get('isUserLoggedIn')
+    isLoggedIn: state.get('isUserLoggedIn'),
+    displayDrawer: state.get('isNotificationDrawerVisible'),
   };
-}
+};
 
 /*
 Create a property isLoggedIn. It should be false by default
