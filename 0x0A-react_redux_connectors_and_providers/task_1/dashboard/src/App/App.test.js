@@ -9,6 +9,7 @@ import Footer from '../Footer/Footer';
 import CourseList from '../CourseList/CourseList';
 import { shallow } from 'enzyme';
 import { StyleSheetTestUtils } from 'aphrodite';
+import { fromJS } from "immutable";
 
 
 describe('App', () => {
@@ -94,34 +95,6 @@ describe('App', () => {
 });
 
 /*
-
-    Add a test to verify that the default state for displayDrawer is false. Verify that after calling handleDisplayDrawer, the state should now be true
-    Add a test to verify that after calling handleHideDrawer, the state is updated to be false
-*/
-
-describe('App', () => {
-  let wrapper;
-  beforeEach(() => {
-    wrapper = shallow(<App />);
-    StyleSheetTestUtils.suppressStyleInjection();
-  });
-  afterEach(() => {
-    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
-  });
-  it('default state for displayDrawer is false', () => {
-    expect(wrapper.state().displayDrawer).toEqual(false);
-  });
-  it('handleDisplayDrawer', () => {
-    wrapper.instance().handleDisplayDrawer();
-    expect(wrapper.state().displayDrawer).toEqual(true);
-  });
-  it('handleHideDrawer', () => {
-    wrapper.instance().handleHideDrawer();
-    expect(wrapper.state().displayDrawer).toEqual(false);
-  });
-});
-
-/*
 Add a test to verify that markNotificationAsRead works as intended. You can for example set the state with a mock list of notifications, then call the function and verify that the state of the container has been updated <correctly></correctly>
 */
 
@@ -180,5 +153,14 @@ describe('mapStateToProps', () => {
     };
     const result = mapStateToProps(state);
     expect(result).toEqual({ isLoggedIn: true });
+  });
+  it('returns the right object when passing the state', () => {
+    const state = {
+      ui: fromJS({
+        isNotificationDrawerVisible: true,
+      }),
+    };
+    const result = mapStateToProps(state);
+    expect(result).toEqual({ displayDrawer: true });
   });
 });
