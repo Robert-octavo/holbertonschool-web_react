@@ -2,9 +2,11 @@ import logo from '../assets/holberton-logo.jpg';
 import React, { Component } from 'react';
 import { StyleSheet, css } from 'aphrodite';
 import AppContext from '../App/AppContext';
+import { connect } from "react-redux";
+import { logout } from '../actions/uiActionCreators';
+import PropTypes from 'prop-types';
 
-
-export default class Header extends Component {
+export class Header extends Component {
   constructor(props) {
     super(props);
   }
@@ -42,3 +44,27 @@ const styles = StyleSheet.create({
 });
 
 Header.contextType = AppContext;
+
+Header.propTypes = {
+  user: PropTypes.object,
+  logOut: PropTypes.func,
+};
+
+Header.defaultProps = {
+  user: null,
+  logOut: () => {},
+};
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.get("user"),
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logOut: () => dispatch(logout()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
