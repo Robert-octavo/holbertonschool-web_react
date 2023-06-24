@@ -33,8 +33,6 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.handleLogout = this.handleLogout.bind(this);
-    this.handleDisplayDrawer = this.handleDisplayDrawer.bind(this);
-    this.handleHideDrawer = this.handleHideDrawer.bind(this);
     this.state = { displayDrawer: true, user: user, logOut: this.logOut, listNotifications: listNotifications };
     this.logOut = this.logOut.bind(this);
     this.logIn = this.logIn.bind(this);
@@ -62,16 +60,6 @@ class App extends Component {
       alert('Logging you out');
       this.props.logOut();
     }
-  }
-
-  handleDisplayDrawer() {
-    this.setState({ displayDrawer: true });
-    console.log('displayDrawer updated');
-  }
-
-  handleHideDrawer() {
-    this.setState({ displayDrawer: false });
-    console.log('displayDrawer false');
   }
 
   markNotificationAsRead(id) {
@@ -162,13 +150,17 @@ export function mapStateToProps(state) {
 Create a property isLoggedIn. It should be false by default
 */
 App.propTypes = {
-  // isLoggedIn: PropTypes.bool,
-  // logOut: PropTypes.func
+  isLoggedIn: PropTypes.bool,
+  displayDrawer: PropTypes.bool,
+  displayNotificationDrawer: PropTypes.func,
+  hideNotificationDrawer: PropTypes.func,
 };
 
 App.defaultProps = {
-  // isLoggedIn: false,
-  // logOut: () => {}
+  isLoggedIn: false,
+  displayDrawer: false,
+  displayNotificationDrawer: () => {},
+  hideNotificationDrawer: () => {},
 };
 
 const mapDispatchToProps = {
