@@ -15,7 +15,12 @@ import BodySectionWithMarginBottom from '../BodySection/BodySectionWithMarginBot
 import AppContext from './AppContext';
 import { user, logOut } from '../App/AppContext';
 
-import { displayNotificationDrawer, hideNotificationDrawer } from '../actions/uiActionCreators';
+import {
+  displayNotificationDrawer,
+  hideNotificationDrawer,
+  loginRequest,
+  logout,
+} from '../actions/uiActionCreators';
 
 const listNotifications = [
   {id: 1, type: 'default', value: 'New course available'},
@@ -34,8 +39,6 @@ class App extends Component {
     super(props);
     this.handleLogout = this.handleLogout.bind(this);
     this.state = { displayDrawer: true, user: user, logOut: this.logOut, listNotifications: listNotifications };
-    this.logOut = this.logOut.bind(this);
-    this.logIn = this.logIn.bind(this);
   }
 
   componentDidMount() {
@@ -70,14 +73,22 @@ class App extends Component {
 
   render() {
     /*Add a props named logOut with the props type being function*/
-    const { logOut, user, listNotifications } = this.state;
-    const { isLoggedIn, displayDrawer, hideNotificationDrawer, displayNotificationDrawer } = this.props;
+    const { user, listNotifications } = this.state;
+    const { 
+      isLoggedIn,
+      displayDrawer,
+      hideNotificationDrawer,
+      displayNotificationDrawer,
+      logIn,
+      logOut,
+    } = this.props;
+
     const value = { user, logOut };
 
     
     /*When isLoggedIn is false, display the Login screen
     When isLoggedIn is true, display the CourseList screen*/
-    let login = isLoggedIn ? <BodySectionWithMarginBottom title="Course List"><CourseList listCourses={listCourses}/></BodySectionWithMarginBottom> : <BodySectionWithMarginBottom title="Log in to continue"><Login logIn={this.logIn}/></BodySectionWithMarginBottom>;
+    let login = isLoggedIn ? <BodySectionWithMarginBottom title="Course List"><CourseList listCourses={listCourses}/></BodySectionWithMarginBottom> : <BodySectionWithMarginBottom title="Log in to continue"><Login logIn={logIn}/></BodySectionWithMarginBottom>;
 
     return (
       <AppContext.Provider value={value}>
@@ -154,6 +165,7 @@ App.propTypes = {
   displayDrawer: PropTypes.bool,
   displayNotificationDrawer: PropTypes.func,
   hideNotificationDrawer: PropTypes.func,
+  login: PropTypes.func,
 };
 
 App.defaultProps = {
@@ -161,11 +173,13 @@ App.defaultProps = {
   displayDrawer: false,
   displayNotificationDrawer: () => {},
   hideNotificationDrawer: () => {},
+  login: () => {},
 };
 
 const mapDispatchToProps = {
   displayNotificationDrawer,
   hideNotificationDrawer,
+  login: loginRequest,
   logOut,
 };
 
