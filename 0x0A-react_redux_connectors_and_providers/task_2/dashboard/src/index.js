@@ -7,9 +7,11 @@ import { Map } from 'immutable';
 //import './index.css';
 import App from './App/App';
 import reportWebVitals from './reportWebVitals';
+import thunk from 'redux-thunk';
 
 //const root = ReactDOM.createRoot(document.getElementById('root'));
-const store = createStore(uiReducer, Map(initialState));
+const store = createStore(uiReducer, Map(initialState), applyMiddleware(thunk));
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
