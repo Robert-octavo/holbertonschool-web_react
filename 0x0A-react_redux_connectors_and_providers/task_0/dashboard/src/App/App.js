@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { render } from 'react-dom';
 import PropTypes from 'prop-types'; 
 import { getLatestNotification } from '../utils/utils';
@@ -26,7 +27,7 @@ const listCourses = [
   {id: 3, name: 'React', credit: 40},
 ];
 
-export default class App extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.handleLogout = this.handleLogout.bind(this);
@@ -144,6 +145,18 @@ const styles = StyleSheet.create({
 });
 
 /*
+Create a function named mapStateToProps. This should connect
+the uiReducer you created and the property isLoggedIn that your
+component is already using
+*/
+
+export function mapStateToProps(state) {
+  return {
+    isLoggedIn: state.get('isUserLoggedIn')
+  };
+}
+
+/*
 Create a property isLoggedIn. It should be false by default
 */
 App.propTypes = {
@@ -155,3 +168,5 @@ App.defaultProps = {
   // isLoggedIn: false,
   // logOut: () => {}
 };
+
+export default connect(mapStateToProps)(App);
