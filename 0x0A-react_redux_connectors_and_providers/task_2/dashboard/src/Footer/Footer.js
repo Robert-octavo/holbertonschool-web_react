@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import { getFullYear, getFooterCopy } from "../utils/utils";
 import AppContext from '../App/AppContext';
 import "./Footer.css";
@@ -6,7 +7,7 @@ import "./Footer.css";
 const year = getFullYear();
 const footer = getFooterCopy(true);
 
-function Footer() {
+export function Footer() {
   return (
     <AppContext.Consumer>
       {(value) => {
@@ -21,4 +22,10 @@ function Footer() {
   );
 };
 
-export default Footer;
+const mapStateToProps = (state) => {
+  return {
+    user: state.get("user.isLoggedIn"),
+  };
+};
+
+export default connect(mapStateToProps)(Footer);
