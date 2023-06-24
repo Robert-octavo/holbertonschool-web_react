@@ -1,14 +1,7 @@
-/*
-Create a test to verify that when the keys control and h are pressed the logOut function, passed as a prop, is called and the alert function is called with the string Logging you out
-*/
-
-/**
- * @jest-environment jsdom
- */
-
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App'
+import App from './App';
+import { mapStateToProps } from './App';
 import Notifications from '../Notifications/Notifications';
 import Header from '../Header/Header';
 import Login from '../Login/Login';
@@ -16,7 +9,6 @@ import Footer from '../Footer/Footer';
 import CourseList from '../CourseList/CourseList';
 import { shallow } from 'enzyme';
 import { StyleSheetTestUtils } from 'aphrodite';
-
 
 
 describe('App', () => {
@@ -166,5 +158,27 @@ describe('App', () => {
     wrapper.setState({ notifications: notifications });
     instance.markNotificationAsRead(id);
     expect(wrapper.state().notifications[0].isRead).toEqual(true);
+  });
+});
+
+/*
+    reate a new suite to test the function
+    Create a test that verify that the function
+    returns the right object when passing the
+
+let state = fromJS({
+  isUserLoggedIn: true
+});
+*/
+
+describe('mapStateToProps', () => {
+  it('returns the right object when passing the state', () => {
+    const state = {
+      ui: fromJS({
+        isUserLoggedIn: true,
+      }),
+    };
+    const result = mapStateToProps(state);
+    expect(result).toEqual({ isLoggedIn: true });
   });
 });
