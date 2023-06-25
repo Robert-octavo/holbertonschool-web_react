@@ -12,7 +12,7 @@ export const initialState = {
 const rootReducer = {
   courses: courseReducer,
   ui: uiReducer,
-  notifications: notificationReducer
+  notifications: notificationReducer,
 };
 
 export default rootReducer;
