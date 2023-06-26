@@ -1,6 +1,8 @@
 // Component Notifications
 import React, { PureComponent } from 'react';
 import { getLatestNotification } from '../utils/utils';
+import { connect } from 'react-redux';
+import { fetchNotifications } from '../actions/notificationActionCreators';
 import PropTypes from 'prop-types';
 import iconClose from '../assets/close-icon.png'
 import NotificationItem from './NotificationItem';
@@ -28,11 +30,9 @@ export default class Notifications extends PureComponent {
     super(props);
   }
 
-  /*shouldComponentUpdate(nextProps) {
-    return (
-      nextProps.listNotifications.length > this.props.listNotifications.length || nextProps.displayDrawer !== this.props.displayDrawer
-    );
-  }*/
+  componentDidMount() {
+    this.props.fetchNotifications();
+  }
 
   render() {
     const {
