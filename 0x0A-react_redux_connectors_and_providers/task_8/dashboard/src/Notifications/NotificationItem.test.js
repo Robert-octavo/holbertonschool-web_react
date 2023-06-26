@@ -1,14 +1,10 @@
-/*
-
-    Verify that the basic rendering of the component works without crashing
-    Verify that by passing dummy type and value props, it renders the correct html (for example: type=“default” and value=“test”)
-    Verify that by passing a dummy html prop, it renders the correct html (for example: html={{ __html: '<u>test</u>' }})
-*/
-
 import React from 'react';
 import { shallow } from 'enzyme';
 import NotificationItem from './NotificationItem';
 import { StyleSheetTestUtils } from 'aphrodite';
+import { Map, fromJS } from 'immutable';
+import { getUnreadNotifications } from '../selectors/notificationSelector';
+import notificationsNormalizer from '../schema/notifications';
 
 describe('NotificationItem', () => {
     let wrapper;
@@ -85,5 +81,37 @@ describe('NotificationItem', () => {
         wrapper.setProps({ listNotifications: longerListNotifications });
         expect(shouldComponentUpdate).toHaveBeenCalled();
         expect(shouldComponentUpdate).toHaveLastReturnedWith(true);
+    });
+});
+
+/*
+add two new tests:
+
+    Clicking on the first button should call setNotificationFilter with URGENT
+    Clicking on the second button should call setNotificationFilter with DEFAULT
+*/  
+
+describe('NotificationItem', () => {
+    let wrapper;
+    beforeEach(() => {
+        const wrapper = shallow(<NotificationItem />);
+    });
+    it('calls setNotificationFilter with URGENT', () => {
+        const wrapper = shallow(<NotificationItem />);
+        const instance = wrapper.instance();
+        const spy = jest.spyOn(instance, 'setNotificationFilter');
+        instance.forceUpdate();
+        wrapper.find('#buttonFilterUrgent').simulate('click');
+        expect(spy).toHaveBeenCalled();
+        expect(spy).toHaveBeenCalledWith('URGENT');
+    });
+    it('calls setNotificationFilter with DEFAULT', () => {
+        const wrapper = shallow(<NotificationItem />);
+        const instance = wrapper.instance();
+        const spy = jest.spyOn(instance, 'setNotificationFilter');
+        instance.forceUpdate();
+        wrapper.find('#buttonFilterDefault').simulate('click');
+        expect(spy).toHaveBeenCalled();
+        expect(spy).toHaveBeenCalledWith('DEFAULT');
     });
 });

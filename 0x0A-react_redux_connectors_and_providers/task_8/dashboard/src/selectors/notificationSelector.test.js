@@ -83,3 +83,51 @@ describe('notificationSelector', () => {
     expect(notifications).toEqual(expectedNotifications);
   });
 });
+/*
+Create a new test to verify that the selector returns unread urgent notifications when the filter is set
+*/
+
+describe('notificationSelector', () => {
+  const initialState = Map({
+    filter: 'URGENT',
+    notifications: notificationsNormalizer([
+      {
+        id: 1,
+        isRead: false,
+        type: 'default',
+        value: 'New course available',
+      },
+      {
+        id: 2,
+        isRead: false,
+        type: 'urgent',
+        value: 'New resume available',
+      },
+      {
+        id: 3,
+        isRead: false,
+        type: 'urgent',
+        value: 'New data available',
+      },
+    ]).notifications,
+  });
+
+  it('verifies that getUnreadNotifications return a list of the message entities', () => {
+    const notifications = getUnreadNotifications(initialState);
+    const expectedNotifications = [
+      {
+        id: 2,
+        isRead: false,
+        type: 'urgent',
+        value: 'New resume available',
+      },
+      {
+        id: 3,
+        isRead: false,
+        type: 'urgent',
+        value: 'New data available',
+      },
+    ];
+    expect(notifications).toEqual(expectedNotifications);
+  });
+});
