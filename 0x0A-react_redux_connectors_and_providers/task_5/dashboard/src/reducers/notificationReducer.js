@@ -8,7 +8,8 @@ import { Map, setIn } from "immutable";
 
 const initialState = {
   notifications:[],
-  filter: "DEFAULT"
+  filter: "DEFAULT",
+  loading: false,
 };
 
 export default function notificationReducer(state = Map(initialState), action) {
@@ -23,6 +24,8 @@ export default function notificationReducer(state = Map(initialState), action) {
       return setIn(state, ["notifications", action.index, "isRead"], true);
     case SET_TYPE_FILTER:
       return state.set("filter", action.filter);
+    case "SET_LOADING_STATE":
+      return state.set("loading", action.loading);
     default:
       return state;
   }
