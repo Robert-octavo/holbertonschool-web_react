@@ -2,7 +2,8 @@
 import React, { PureComponent } from 'react';
 import { getLatestNotification } from '../utils/utils';
 import { connect } from 'react-redux';
-import { fetchNotifications } from '../actions/notificationActionCreators';
+import { fetchNotifications, markAsAread } from '../actions/notificationActionCreators';
+import { getUnreadNotifications } from '../selectors/notificationSelector';
 import PropTypes from 'prop-types';
 import iconClose from '../assets/close-icon.png'
 import NotificationItem from './NotificationItem';
@@ -56,13 +57,13 @@ export default class Notifications extends PureComponent {
             </button>
             <ul className={css(styles.ul, styles.li, styles.dataProperty)}>
               {listNotifications.length === 0 ? (<NotificationItem id={0} value="No new notification for now" type='no-new' markAsRead={markNotificationAsRead} />) : <></>}
-              {listNotifications.map((notification) => (
+              {listNotifications.valueSeq().map((notification) => (
                 <NotificationItem 
-                  id={notification.id}
-                  key={notification.id}
-                  type={notification.type}
-                  value={notification.value}
-                  html={notification.html}
+                  id={notification.get('id')}
+                  key={notification.get('id')}
+                  type={notification.get('type')}
+                  value={notification.get('value')}
+                  html={notification.get('html')}
                   markAsRead={markNotificationAsRead}
                 />
                 ))
