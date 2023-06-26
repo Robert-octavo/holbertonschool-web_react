@@ -41,7 +41,8 @@ export default class Notifications extends PureComponent {
       displayDrawer, 
       handleDisplayDrawer, 
       handleHideDrawer, 
-      markNotificationAsRead 
+      markNotificationAsRead,
+      setNotificationFilter
     } = this.props;
     
     console.log('after render',{displayDrawer});
@@ -160,14 +161,7 @@ prop to the Notifications component named displayDrawer:
 */
 Notifications.propTypes = {
   displayDrawer: PropTypes.bool,
-  listNotifications: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    type: PropTypes.string.isRequired,
-    html: PropTypes.shape({
-      __html: PropTypes.string
-    }),
-    value: PropTypes.string
-  })),
+  listNotifications: PropTypes.object,
   handleDisplayDrawer: PropTypes.func,
   handleHideDrawer: PropTypes.func,
   markNotificationAsRead: PropTypes.func,
