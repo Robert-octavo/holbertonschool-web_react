@@ -65,12 +65,6 @@ class App extends Component {
     }
   }
 
-  markNotificationAsRead(id) {
-    console.log(`Notification ${id} has been marked as read`);
-    /*the function is called, it remove the notification with that id from the list of notifications within the state*/
-    this.setState({ listNotifications: this.state.listNotifications.filter((notification) => {return notification.id !== id}) });
-  }
-
   render() {
     /*Add a props named logOut with the props type being function*/
     const { user, listNotifications } = this.state;
@@ -100,7 +94,7 @@ class App extends Component {
                 displayDrawer={displayDrawer}
                 handleDisplayDrawer={displayNotificationDrawer}
                 handleHideDrawer={hideNotificationDrawer}
-                markNotificationAsRead={this.markNotificationAsRead}
+                //markNotificationAsRead={this.markNotificationAsRead}
               />
               <Header />
             </div>
