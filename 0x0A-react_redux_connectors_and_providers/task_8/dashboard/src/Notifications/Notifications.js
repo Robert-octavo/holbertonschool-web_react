@@ -2,7 +2,7 @@
 import React, { PureComponent } from 'react';
 import { getLatestNotification } from '../utils/utils';
 import { connect } from 'react-redux';
-import { fetchNotifications, markAsAread } from '../actions/notificationActionCreators';
+import { fetchNotifications, markAsAread, setNotificationFilter } from '../actions/notificationActionCreators';
 import { getUnreadNotifications } from '../selectors/notificationSelector';
 import PropTypes from 'prop-types';
 import iconClose from '../assets/close-icon.png'
@@ -52,6 +52,22 @@ export default class Notifications extends PureComponent {
         {displayDrawer && (
           <div className={css(styles.notifications)}>
             <p className={css(styles.p)}>Here is the list of notifications</p>
+            <button
+            type='button'
+            className={css(styles.filterButton)}
+            id='buttonFilterUrgent'
+            onClick={() => setNotificationFilter('URGENT')}
+            >
+            ‼️
+            </button>
+            <button
+            type='button'
+            className={css(styles.filterButton)}
+            id='buttonFilterDefault'
+            onClick={() => setNotificationFilter('DEFAULT')}
+            >
+            ?
+            </button>
             <button style={myStyle} aria-label='Close' onClick={handleHideDrawer}>
               <img src={iconClose} alt="Close" />
             </button>
@@ -154,7 +170,8 @@ Notifications.propTypes = {
   })),
   handleDisplayDrawer: PropTypes.func,
   handleHideDrawer: PropTypes.func,
-  markNotificationAsRead: PropTypes.func
+  markNotificationAsRead: PropTypes.func,
+  setNotificationFilter: PropTypes.func
 };
 
 Notifications.defaultProps = {
@@ -162,5 +179,20 @@ Notifications.defaultProps = {
   listNotifications: [],
   handleDisplayDrawer: () => {},
   handleHideDrawer: () => {},
-  markNotificationAsRead: () => {}
+  markNotificationAsRead: () => {},
+  setNotificationFilter: () => {}
 };
+
+const mapStateToProps = (state) => {
+  return {
+    listNotifications: getUnreadNotifications(state)
+  }
+};
+
+const mapDispatchToProps = {
+  fetchNotifications,
+  markNotificationAsRead,
+  setNotificationFilter
+};
+
+export const ConnectedNotifications = connect(mapStateToProps, mapDispatchToProps)(Notifications);
